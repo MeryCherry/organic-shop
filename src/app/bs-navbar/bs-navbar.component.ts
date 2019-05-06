@@ -1,3 +1,5 @@
+import { AppUser } from './../models/app-user';
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,11 +8,22 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './bs-navbar.component.html',
   styleUrls: ['./bs-navbar.component.scss']
 })
-export class BsNavbarComponent implements OnInit {
+export class BsNavbarComponent implements OnInit  {
 
-  constructor() { }
+  appUser: AppUser;
 
-  ngOnInit() {
-  }
+  constructor(private auth: AuthService) {
+   }
+
+   ngOnInit(){
+    // we don't need to unsubscribe here onDestroy, because
+    // it's suppose to be just one instance of that component,
+    // displayed in main template all time
+    this.auth.appUser$.subscribe(user => { this.appUser = user;  } );
+   }
+
+      logout() {
+        this.auth.logout();
+      }
 
 }

@@ -1,3 +1,8 @@
+import { ProductService } from './product.service';
+import { AdminAuthGuardService as AdminAuthGuard } from './admin-auth-guard.service';
+import { UserService } from './user.service';
+import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { AuthService } from './auth.service';
 import { MyOrdersComponent } from './shopping/my-orders/my-orders.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
@@ -5,9 +10,10 @@ import { ShoppingModule } from './shopping/shopping.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CustomFormsModule } from 'ng2-validation';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +26,9 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { ProductsComponent } from './shopping/products/products.component';
 import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './category.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,29 +39,55 @@ import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.co
     OrderSuccessComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    CustomFormsModule,
     AppRoutingModule,
     ShoppingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
+   // AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
+      {path: 'login', component: LoginComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
-      {path: 'check-out', component: CheckOutComponent},
-      {path: 'my/orders', component: MyOrdersComponent},
-      {path: 'order-success', component: OrderSuccessComponent},
-      {path: 'login', component: LoginComponent},
-      {path: 'admin/product', component: AdminProductsComponent},
-      {path: 'admin/orders', component: AdminOrdersComponent}
+
+      {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
+      {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
+      {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
+
+      {
+        path: 'admin/product',
+        component: AdminProductsComponent,
+         canActivate: [AuthGuard, AdminAuthGuard]
+      },
+      {
+        path: 'admin/product/new',
+        component: ProductFormComponent,
+         canActivate: [AuthGuard, AdminAuthGuard]
+      },
+      {
+        path: 'admin/orders',
+        component: AdminOrdersComponent,
+         canActivate: [AuthGuard, AdminAuthGuard]
+      }
     ])
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard,
+    AdminAuthGuard,
+    UserService,
+    CategoryService,
+    AngularFireDatabase,
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
