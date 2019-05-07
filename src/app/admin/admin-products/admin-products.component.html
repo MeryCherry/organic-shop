@@ -1,6 +1,42 @@
 <p>
     <a routerLink="/admin/product/new" class="btn btn-primary">New product</a>
 </p>
+<p>
+    <input #query (keyup)="filter(query.value)"
+     type="text" class="form-control" placeholder="Search...">
+</p>
+<!-- <data-table
+[items]="items"
+[itemsCount]="itemCount"
+(reload)="reloadItems($event)">
+    <data-table-column
+    [property]="'title'" 
+    [header]="'Title'" 
+    [sortable]="true"
+    [resizable]="true"
+    >
+
+    </data-table-column>
+    <data-table-column
+    [property]="'price'" 
+    [header]="'Price'" 
+    [sortable]="true"
+    [resizable]="true"
+    >
+    // let-item directive: to get reference for current row
+    <ng-template #dataTableCell let-item="product">
+        {{ product.price | currency:'USD':true }}
+    </ng-template>
+    </data-table-column>
+    <data-table-column
+    [property]="'key'" 
+    >
+    // let-item directive: to get reference for current row
+    <ng-template #dataTableCell let-item="product">
+        <a [routerLink]="['/admin/product/', p.key]">Edit</a>
+    </ng-template>
+    </data-table-column>
+</data-table> -->
 
 <table class="table">
     <thead>
@@ -11,7 +47,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of products$ | async">
+        <tr *ngFor="let p of filteredProducts">
             <td>{{p.title}}</td>
             <td>{{p.price}}</td>
             <td>
