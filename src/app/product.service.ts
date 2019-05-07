@@ -17,14 +17,14 @@ export class ProductService {
   getAll() {
     // we use snapshotchanges to map list and get also
     // key parameter otherwise we would use commented line
-    let productRef = this.db.list('/products');
+    const productRef = this.db.list('/products');
     return productRef.snapshotChanges().pipe(map(changes => {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val()}));
     }));
    // return this.db.list('/products').valueChanges();
   }
 
-  get(productId){
+  get(productId) {
     return this.db.object('/products/' + productId).valueChanges();
   }
 
@@ -32,7 +32,7 @@ export class ProductService {
     return this.db.object('/products/' + productId).update(product);
   }
 
-  delete(productId){
+  delete(productId) {
     return this.db.object('/products/' + productId).remove();
   }
 }
