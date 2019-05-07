@@ -1,8 +1,8 @@
-import { ProductService } from './product.service';
+import { ProductService } from './services/products/product.service';
 import { AdminAuthGuardService as AdminAuthGuard } from './admin-auth-guard.service';
-import { UserService } from './user.service';
-import { AuthGuardService as AuthGuard } from './auth-guard.service';
-import { AuthService } from './auth.service';
+import { UserService } from './services/authentication/user.service';
+import { AuthGuardService as AuthGuard } from './services/authentication/auth-guard.service';
+import { AuthService } from './services/authentication/auth.service';
 import { MyOrdersComponent } from './shopping/my-orders/my-orders.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
@@ -14,6 +14,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,8 +28,9 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { ProductsComponent } from './shopping/products/products.component';
 import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { CategoryService } from './category.service';
+import { CategoryService } from './services/products/category.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -46,11 +48,13 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     FormsModule,
     CustomFormsModule,
+    CommonModule,
     AppRoutingModule,
     ShoppingModule,
     AngularFireModule.initializeApp(environment.firebase),
    // AngularFireDatabaseModule,
     AngularFireAuthModule,
+    BrowserAnimationsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
