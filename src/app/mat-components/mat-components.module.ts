@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
-import {  MatTableModule } from '@angular/material';
+import {  MatTableModule, MatSortModule, MatPaginatorModule } from '@angular/material';
 
 @NgModule({
     exports: [
-      MatTableModule
+      MatTableModule,
+      MatSortModule,
+      MatPaginatorModule
     ]
 })
 export class MatComponentsModule { }

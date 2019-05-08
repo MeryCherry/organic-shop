@@ -31,6 +31,7 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { CategoryService } from './services/products/category.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatComponentsModule } from './mat-components/mat-components.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     AppRoutingModule,
     ShoppingModule,
+    MatComponentsModule,
     AngularFireModule.initializeApp(environment.firebase),
    // AngularFireDatabaseModule,
     AngularFireAuthModule,
