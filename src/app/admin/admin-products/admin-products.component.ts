@@ -19,7 +19,6 @@ export class AdminProductsComponent implements OnDestroy, OnInit {
   // title of type string
   // products: { title: string}[];
   products: Product[];
-  filteredProducts: Product[];
   subscription: Subscription;
   // this is column names definition for angular material
   // data table
@@ -31,26 +30,29 @@ export class AdminProductsComponent implements OnDestroy, OnInit {
 
    // filtering method, it filters by title, filtering is done on client
    filter(query: string) {
-      this.dataSource.filter = query.trim().toLowerCase();
-      // this.filteredProducts = (query) ? this.products.filter
-      // (p => p.title.toLowerCase().includes(query.toLowerCase())) :
-      // this.products;
+      // this.dataSource.filter = query.trim().toLowerCase();
+      let filteredProducts = (query) ? this.products.filter
+       (p => p.title.toLowerCase().includes(query.toLowerCase())) :
+       this.products;
+      this.initizalizeTable(filteredProducts);
       if (this.dataSource.paginator) {
         this.dataSource.paginator.firstPage();
       }
    }
 
-   ngOnInit() {
-    this.subscription = this.productsService.getAll().subscribe(
-      (prod: Product[]) => {
-        this.filteredProducts = this.products = prod;
+   private initizalizeTable(products: Product[]) {
         // binding sorting and paginating for data in table
-        this.dataSource = new MatTableDataSource(this.filteredProducts);
+        this.dataSource = new MatTableDataSource(products);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.itemCount = this.dataSource.data.length;
-      }
-    );
+   }
+   ngOnInit() {
+    this.subscription = this.productsService.getAll().subscribe(
+      (prod: Product[]) => {
+        this.products = prod;
+        this.initizalizeTable(prod);
+      });
    }
    ngOnDestroy() {
     this.subscription.unsubscribe();
