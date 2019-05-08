@@ -32,6 +32,7 @@ import { CategoryService } from './services/products/category.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatComponentsModule } from './mat-components/mat-components.module';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [

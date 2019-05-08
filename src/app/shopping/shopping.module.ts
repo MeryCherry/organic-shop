@@ -6,23 +6,31 @@ import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @NgModule({
   declarations: [
     OrdersComponent,
     ProductsComponent,
     ShoppingCartComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     RouterModule
   ],
   exports: [
     OrdersComponent,
     ProductsComponent,
     ShoppingCartComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   providers: []
 })
