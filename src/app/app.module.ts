@@ -59,7 +59,6 @@ import { MatComponentsModule } from './mat-components/mat-components.module';
     BrowserAnimationsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
       {path: 'login', component: LoginComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
@@ -87,7 +86,9 @@ import { MatComponentsModule } from './mat-components/mat-components.module';
         path: 'admin/orders',
         component: AdminOrdersComponent,
          canActivate: [AuthGuard, AdminAuthGuard]
-      }
+      },
+      { path: '', component: HomeComponent },
+      { path: '**', component: HomeComponent }
     ])
   ],
   providers: [
