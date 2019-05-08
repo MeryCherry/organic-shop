@@ -87,8 +87,8 @@ import { MatComponentsModule } from './mat-components/mat-components.module';
         component: AdminOrdersComponent,
          canActivate: [AuthGuard, AdminAuthGuard]
       },
-      { path: '', component: HomeComponent },
-      { path: '**', component: HomeComponent }
+      { path: '', component: ProductsComponent },
+      { path: '**', component: ProductsComponent }
     ])
   ],
   providers: [

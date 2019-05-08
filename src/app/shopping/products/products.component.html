@@ -1,3 +1,37 @@
-<p>
-  products works!
-</p>
+<div class="row">
+  <div class="col-3">
+    <div class="list-group">
+      <a
+      routerLink="/"
+      class="list-group-item list-group-item-action"
+      [class.active]="!category"
+      >All categories</a>
+      <a *ngFor="let c of categories$ | async"
+      routerLink="/"
+      [queryParams]="{ category: c.key }"
+      [class.active]="category === c.key"
+      class="list-group-item list-group-item-action">
+      {{ c.name}}
+      </a>
+    </div>
+  </div>
+  <!-- in new bootstrap we don't need to define number for remining columns
+  it will expand automatically when we define class 'col' -->
+  <div class="col">
+    <div class="row">
+      <ng-container *ngFor="let p of filteredProducts; let i = index">
+        <div class="col">
+          <div class="card" style="width: 15rem;">
+            <img [src]="p.imageUrl" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{p.title}}</h5>
+              <p class="card-text">{{p.price | currency:'USD':true }}</p>
+              <a href="#" class="btn btn-primary">Add to cart</a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="( i + 1) % 2 === 0" class="w-100"></div>
+      </ng-container>
+    </div>
+  </div>
+</div>

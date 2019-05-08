@@ -5,6 +5,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     MyOrdersComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule
   ],
   exports: [
     OrdersComponent,
