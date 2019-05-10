@@ -5,7 +5,7 @@ import { CategoryService } from 'src/app/services/products/category.service';
 // tslint:disable-next-line: component-selector
   selector: 'product-filter',
   templateUrl: './product-filter.component.html',
-  styleUrls: ['./product-filter.component.sass']
+  styleUrls: ['./product-filter.component.scss']
 })
 export class ProductFilterComponent implements OnInit {
 
