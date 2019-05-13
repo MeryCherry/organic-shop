@@ -25,7 +25,7 @@ export class ProductCardComponent {
   getQuantity() {
     if (!this.shoppingCart) { return 0; }
     // get item for which quantity is checked
-    let item = this.shoppingCart.items[this.product.key];
+    let item = this.shoppingCart.itemsMap[this.product.key];
     // if there is item, return its quantity otherwise return 0
     return item ? item.quantity : 0;
   }
