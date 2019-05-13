@@ -34,6 +34,7 @@ import { CommonModule } from '@angular/common';
 import { MatComponentsModule } from './mat-components/mat-components.module';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartService } from './services/shopping/shopping-cart.service';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [

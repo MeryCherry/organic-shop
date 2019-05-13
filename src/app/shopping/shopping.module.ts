@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { ProductQuantityComponent } from '../product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ProductCardComponent } from '../product-card/product-card.component';
     ShoppingCartComponent,
     MyOrdersComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { ProductCardComponent } from '../product-card/product-card.component';
     ShoppingCartComponent,
     MyOrdersComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   providers: []
 })

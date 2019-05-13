@@ -1,4 +1,5 @@
 import { ShoppingCartItem } from './shopping-cart-item';
+import { Product } from './product';
 
 export interface ShoppingCart {
     items: ShoppingCartItem[];
@@ -16,6 +17,14 @@ export class ShoppingCart {
             this.items.push(new ShoppingCartItem(item.product, item.quantity));
         }
     }
+
+    getQuantity(product: Product) {
+        // get item for which quantity is checked
+        let item = this.itemsMap[product.key];
+        // if there is item, return its quantity otherwise return 0
+        return item ? item.quantity : 0;
+      }
+
     public get TotalNumbersCount(): number {
         let count = 0;
         // tslint:disable-next-line: forin
@@ -37,4 +46,5 @@ export class ShoppingCart {
         }
         return sum;
     }
+
 }
