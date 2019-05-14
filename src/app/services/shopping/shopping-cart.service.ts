@@ -3,7 +3,6 @@ import { take, map } from 'rxjs/operators';
 import { Product } from 'src/app/models/product';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +11,7 @@ export class ShoppingCartService {
 
   constructor(private db: AngularFireDatabase) { }
 
-
-  create() {
-    return this.db.list('/shopping-carts').push({
-      dateCreated: new Date().getTime()
-    });
-  }
-
-  async getCart(){
+  async getCart() {
 
     let cartId = await this.getOrCreateCartId();
     let cart = this.db.object('/shopping-carts/' + cartId).snapshotChanges().pipe(
@@ -29,7 +21,26 @@ export class ShoppingCartService {
     return new ShoppingCart(key, items);
     }));
     return cart;
-    }
+  }
+
+  async removeFromCart(product: Product) {
+    this.updateItem(product, -1 , 0);
+  }
+  async addToCart(product: Product) {
+    this.updateItem(product, 1 , 1);
+  }
+
+  async clearCart() {
+    let cartId =  await this.getOrCreateCartId();
+    // remove all items from cart
+    this.db.object('/shopping-carts/' + cartId + '/items').remove();
+  }
+
+  create() {
+    return this.db.list('/shopping-carts').push({
+      dateCreated: new Date().getTime()
+    });
+  }
 
   getItem( cartId: string, productId: string) {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
@@ -50,18 +61,11 @@ export class ShoppingCartService {
 
   }
 
-  async removeFromCart(product: Product) {
-    this.updateProductQuantity(product, -1 , 0);
-  }
-  async addToCart(product: Product) {
-    this.updateProductQuantity(product, 1 , 1);
-  }
-
   // increase or decrease product quantity
   // product => product to be added/removed
   // change => number added to quantity of products
   // minNum=> if there is no products in cart, what quantity should be set
-  private async updateProductQuantity(product: Product, change: number, minNum: number) {
+  private async updateItem(product: Product, change: number, minNum: number) {
         // calling async method as sync method, with await
         let cartId = await this.getOrCreateCartId();
         // getting observable for shopping cart items
@@ -72,10 +76,18 @@ export class ShoppingCartService {
         item$.snapshotChanges()
          .pipe(take(1))
          .subscribe(i => {
-           item$.update({
-             product: product,
-             quantity: ((i.payload.hasChild('quantity')) ? (i.payload.val()['quantity' ] || 0 ) + change : minNum)
-           });
+           let quantity = ((i.payload.hasChild('quantity')) ? (i.payload.val()['quantity' ] || 0 ) + change : minNum);
+           if (!quantity || quantity <= 0) {
+            item$.remove();
+           } else {
+            item$.update({
+              title: product.title,
+              price: product.price,
+              category: product.category,
+              imageUrl: product.imageUrl,
+              quantity: quantity
+            });
+           }
          });
   }
 

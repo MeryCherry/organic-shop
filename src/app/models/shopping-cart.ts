@@ -10,11 +10,12 @@ export class ShoppingCart {
 
     // constructor(public key: string, public items: ShoppingCartItem[]) {}
     constructor(public key: string, public itemsMap: { [key: string]: ShoppingCartItem}) {
+        this.itemsMap = itemsMap || {};
         let item;
 // tslint:disable-next-line: forin
         for ( let productId in itemsMap) {
             item = itemsMap[productId];
-            this.items.push(new ShoppingCartItem(item.product, item.quantity));
+            this.items.push(new ShoppingCartItem({...item, key: productId }));
         }
     }
 

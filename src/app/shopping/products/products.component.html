@@ -5,7 +5,7 @@
   <!-- in new bootstrap we don't need to define number for remining columns
   it will expand automatically when we define class 'col' -->
   <div class="col">
-    <div class="row">
+    <div class="row" *ngIf="cart$ | async as cart">
       <ng-container *ngFor="let p of filteredProducts; let i = index">
         <div class="col">
           <product-card [product]="p" [shopping-cart]="cart"></product-card>

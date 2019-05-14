@@ -2,9 +2,20 @@ import { Product } from 'src/app/models/product';
 
 export class ShoppingCartItem {
 
-    constructor( public product: Product, public  quantity: number) {}
+    key: string;
+    title: string;
+    price: number;
+    category: string;
+    imageUrl: string;
+    quantity: number;
+
+    // init can be object that looks like a shopping cart item
+    constructor(init?: Partial<ShoppingCartItem>) {
+    // mapping properties from passed object in constructor
+        Object.assign(this, init);
+    }
 
     public get totalPrice() {
-        return this.product.price * this.quantity;
+        return this.price * this.quantity;
     }
 }
