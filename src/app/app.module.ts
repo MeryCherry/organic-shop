@@ -34,6 +34,7 @@ import { CommonModule } from '@angular/common';
 import { MatComponentsModule } from './mat-components/mat-components.module';
 import { ShoppingCartService } from './services/shopping/shopping-cart.service';
 import { OrderService } from './services/order/order.service';
+import { ShippingFormComponent } from './shopping-form/shipping-form.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { OrderService } from './services/order/order.service';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ShippingFormComponent
   ],
   imports: [
     BrowserModule,
