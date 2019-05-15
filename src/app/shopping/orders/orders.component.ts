@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { switchMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/authentication/auth.service';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-orders',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdersComponent implements OnInit {
 
-  constructor() { }
+  orders$;
 
-  ngOnInit() {
+  constructor(private orderService: OrderService) {
   }
 
+  ngOnInit() {
+    this.orders$ = this.orderService.getAll();
+  }
 }
