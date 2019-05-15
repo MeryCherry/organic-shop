@@ -8,8 +8,8 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from '../product-card/product-card.component';
-import { ProductQuantityComponent } from '../product-quantity/product-quantity.component';
+import { ProductCardComponent } from 'shared/components/product-card/product-card.component';
+import { ProductQuantityComponent } from 'shared/components/product-quantity/product-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 
 @NgModule({

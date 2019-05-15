@@ -1,7 +1,7 @@
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { ShoppingCartService } from '../shopping/shopping-cart.service';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 
 @Injectable({
   providedIn: 'root'

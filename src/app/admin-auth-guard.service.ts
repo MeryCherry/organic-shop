@@ -1,7 +1,7 @@
-import { UserService } from './services/authentication/user.service';
+import { UserService } from 'shared/services/user.service';
 import { CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { AuthService } from './services/authentication/auth.service';
+import { AuthService } from 'shared/services/auth.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 

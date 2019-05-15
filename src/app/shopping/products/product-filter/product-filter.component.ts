@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CategoryService } from 'src/app/services/products/category.service';
+import { CategoryService } from 'shared/services/category.service';
 
 @Component({
 // tslint:disable-next-line: component-selector

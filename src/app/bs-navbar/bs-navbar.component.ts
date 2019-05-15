@@ -1,10 +1,10 @@
-import { ShoppingCart } from './../models/shopping-cart';
-import { AppUser } from './../models/app-user';
-import { AuthService } from '../services/authentication/auth.service';
+import { ShoppingCart } from 'shared/models/shopping-cart';
+import { AppUser } from 'shared/models/app-user';
+import { AuthService } from 'shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ShoppingCartService } from '../services/shopping/shopping-cart.service';
 import { Observable } from 'rxjs';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -20,7 +20,7 @@ export class BsNavbarComponent implements OnInit  {
   constructor(private auth: AuthService, private router: Router, private shoppingCartService: ShoppingCartService) {
    }
 
-   async ngOnInit(){
+   async ngOnInit() {
     // we don't need to unsubscribe here onDestroy, because
     // it's suppose to be just one instance of that component,
     // displayed in main template all time

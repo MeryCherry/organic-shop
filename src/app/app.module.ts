@@ -1,8 +1,8 @@
-import { ProductService } from './services/products/product.service';
+import { ProductService } from 'shared/services/product.service';
 import { AdminAuthGuardService as AdminAuthGuard } from './admin-auth-guard.service';
-import { UserService } from './services/authentication/user.service';
-import { AuthGuardService as AuthGuard } from './services/authentication/auth-guard.service';
-import { AuthService } from './services/authentication/auth.service';
+import { UserService } from 'shared/services/user.service';
+import { AuthGuardService as AuthGuard } from 'shared/services/auth-guard.service';
+import { AuthService } from 'shared/services/auth.service';
 import { MyOrdersComponent } from './shopping/my-orders/my-orders.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
@@ -18,7 +18,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { CheckOutComponent } from './check-out/check-out.component';
@@ -28,12 +28,12 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { ProductsComponent } from './shopping/products/products.component';
 import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { CategoryService } from './services/products/category.service';
+import { CategoryService } from 'shared/services/category.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatComponentsModule } from './mat-components/mat-components.module';
-import { ShoppingCartService } from './services/shopping/shopping-cart.service';
-import { OrderService } from './services/order/order.service';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
+import { OrderService } from 'shared/services/order.service';
 import { ShippingFormComponent } from './shopping-form/shipping-form.component';
 
 @NgModule({

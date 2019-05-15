@@ -1,6 +1,6 @@
-import { ShoppingCart } from './../../models/shopping-cart';
+import { ShoppingCart } from 'shared/models/shopping-cart';
 import { take, map } from 'rxjs/operators';
-import { Product } from 'src/app/models/product';
+import { Product } from 'shared/models/product';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 
