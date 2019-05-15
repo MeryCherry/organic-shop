@@ -1,8 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MatComponentsModule } from 'app/mat-components/mat-components.module';
 import { AuthGuardService as AuthGuard } from 'shared/services/auth-guard.service';
 import { SharedModule } from 'shared/shared.module';
 
@@ -13,10 +10,7 @@ import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-g
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
     SharedModule,
-    MatComponentsModule,
     RouterModule.forChild([
       {
         path: 'admin/product/new',
